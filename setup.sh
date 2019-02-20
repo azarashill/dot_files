@@ -4,6 +4,7 @@
 #https://qiita.com/Angelan1720/items/60431c85592fe90fcdd5
 #https://gist.github.com/juno/5546198
 #https://qiita.com/bake0937/items/79e350a474c1cd60a5e0
+
 #この辺り参照。
 
 
