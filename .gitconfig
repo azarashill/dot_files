@@ -1,0 +1,26 @@
+[color]
+  ui = false
+  diff = true
+  interactive = true
+  status = true
+  branch = true
+[alias]
+  st = status -sb
+  cm = commit
+  br = branch
+  co = checkout
+  df = diff --color
+  pr = pull --rebase
+  lg = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=short
+  fix = commit --amend -C HEAD
+[interactive]
+  singlekey = true
+[core]
+  quotepath = false
+  autocrlf = false
+  safecrlf = true
+  pager = less=-R less
+[i18n]
+  commitencoding = UTF-8
+[push]
+  default = matching
