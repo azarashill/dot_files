@@ -13,6 +13,3 @@ fi
 # Customize to your needs...
 #
 
-fpath=(/usr/local/var/homebrew/linked/zsh-completions $fpath)
-autoload -U compinit
-compinit -u

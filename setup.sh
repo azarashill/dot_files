@@ -20,6 +20,8 @@ do
   fi
 done
 
+
+
 #dein
 mkdir -p ~/.vim/dein/repos/github.com/Shougo/dein.vim
 git clone https://github.com/Shougo/dein.vim.git \
@@ -49,3 +51,11 @@ cd fonts
 # 必要なければcloneファイルを削除
 cd ..
 rm -rf fonts
+
+#zsh-completions
+git clone git://github.com/zsh-users/zsh-completions.git
+
+cd $(dirname $0)
+echo "$PWD/zsh-completions" >> ./.zshrc
+echo "autoload -U compinit" >> ./.zshrc
+echo "compinit -u" >> ./.zshrc
