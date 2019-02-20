@@ -33,7 +33,7 @@ git clone https://github.com/Shougo/dein.vim.git \
 git clone git://github.com/zsh-users/zsh-completions.git
 
 cd $(dirname $0)
-echo "fpath=($PWD/zsh-completions $fpath)" >> ./.zshrc
+echo "fpath=($PWD/zsh-completions '$fpath')" >> ./.zshrc
 echo "autoload -U compinit" >> ./.zshrc
 echo "compinit -u" >> ./.zshrc
 
