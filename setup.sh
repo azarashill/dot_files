@@ -27,22 +27,6 @@ mkdir -p ~/.vim/dein/repos/github.com/Shougo/dein.vim
 git clone https://github.com/Shougo/dein.vim.git \
     ~/.vim/dein/repos/github.com/Shougo/dein.vim
 
-#zsh
-brew install zsh
-chsh -s /usr/local/bin/zsh
-git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-
-setopt EXTENDED_GLOB
-for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
-done
-
-echo "zstyle ':prezto:module:prompt' theme 'agnoster'" >> ~/.zpreztorc
-
-source ~/.zpreztorc
-
-# cloneする
-git clone https://github.com/powerline/fonts.git --depth=1
 
 # インストール
 cd fonts
@@ -59,3 +43,22 @@ cd $(dirname $0)
 echo "$PWD/zsh-completions" >> ./.zshrc
 echo "autoload -U compinit" >> ./.zshrc
 echo "compinit -u" >> ./.zshrc
+
+
+#zsh
+#なんかエラー出るから最後(brewに関してはアレ)
+brew install zsh
+chsh -s /usr/local/bin/zsh
+git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+
+setopt EXTENDED_GLOB
+for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+done
+
+echo "zstyle ':prezto:module:prompt' theme 'agnoster'" >> ~/.zpreztorc
+
+source ~/.zpreztorc
+
+# cloneする
+git clone https://github.com/powerline/fonts.git --depth=1
