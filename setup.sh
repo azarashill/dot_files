@@ -16,7 +16,7 @@ for dotfile in .?*
 do
   if [ $dotfile != '..' ] && [ $dotfile != '.git' ] && [ $dotfile != '.gitignore' ]
   then
-    ln -Fs "$PWD/$dotfile" $HOME
+    ln -Ffs "$PWD/$dotfile" $HOME
   fi
 done
 
@@ -28,14 +28,12 @@ git clone https://github.com/Shougo/dein.vim.git \
     ~/.vim/dein/repos/github.com/Shougo/dein.vim
 
 
+#zshをinstall
+source $PWD/zsh/install.sh
 
-#zsh-completions
-git clone git://github.com/zsh-users/zsh-completions.git
+#zpreztoとzsh-completions
+source $PWD/src/sub.sh
 
-cd $(dirname $0)
-echo "fpath=($PWD/zsh-completions '$fpath')" >> ./.zshrc
-echo "autoload -U compinit" >> ./.zshrc
-echo "compinit -u" >> ./.zshrc
 
 
 #zsh
