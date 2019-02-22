@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 #https://qiita.com/yoza/items/2f8bd33a18225754f346
 #https://qiita.com/Angelan1720/items/60431c85592fe90fcdd5
@@ -25,9 +25,9 @@ mkdir -p ~/.vim/dein/repos/github.com/Shougo/dein.vim
 git clone https://github.com/Shougo/dein.vim.git \
     ~/.vim/dein/repos/github.com/Shougo/dein.vim
 
+
 #zshをinstall
-#echo "$PWD/zsh/install.sh"
-source "$PWD/zsh/install.sh"
+source $PWD/zsh/install.sh
 
 #zpreztoとzsh-completions
 source $PWD/src/sub.sh
