@@ -13,3 +13,6 @@ fi
 # Customize to your needs...
 #
 
+fpath=(/home/azarashi/dot_files/zsh-completions $fpath)
+autoload -U compinit
+compinit -u
