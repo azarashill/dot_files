@@ -35,7 +35,6 @@ source $PWD/zsh/install.sh
 source $PWD/src/sub.sh
 
 
-
 #zsh
 #なんかエラー出るから最後(brewに関してはアレ)
 #brew install zsh
