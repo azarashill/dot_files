@@ -7,8 +7,6 @@
 
 #この辺り参照。
 
-
-
 cd $(dirname $0)
 
 #dotfile関連設定
