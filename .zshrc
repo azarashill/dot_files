@@ -34,12 +34,33 @@ zle -N peco-history-selection
 bindkey '^R' peco-history-selection
 alias ft='find . -type d | grep -v "\/\." | peco'
 alias fn='find . -name * | grep -v "\/\." | peco'
+alias ag='ag -a'
 alias gi='git'
+
 
 function agvim () {
   vim $(ag $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
 }
 
+function agp(){
+  #ag $@ | awk '!a[$0]++' | peco --query "$LBUFFER" | awk -F : '{print -z $1}' 
+  BUFFER=`ag $@ | awk '!a[$0]++' | peco --query "$LBUFFER" | awk -F : '{print $1}'`
+  #BUFFER=`ag $@ | awk '!a[$0]++' | peco --query "$LBUFFER"`
+  print -z $BUFFER
+  echo 'hoge'
+  echo $#BUFFER
+  #CURSOR=$#BUFFER
+  #CURSOR=$#BUFFER
+  #zle reset-prompt
+  #$(ag $@ | peco --query "$LBUFFER"| awk -F : '{print "-c " $2 " " $1}')
+}
+
 function fnvim () {
   vim $(fn)
 }
+
+#export PATH=~/bin/:~/bin/du-bin/:~/bin/vendor/:local/bin:~/usr/local/bin:"$PATH"
+
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+export MANPATH=/opt/local/man:$MANPATH
+

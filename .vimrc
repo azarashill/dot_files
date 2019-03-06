@@ -217,6 +217,14 @@ set termencoding=utf-8
 set enc=utf-8
 set fencs=utf-8,sjis,utf-16,ucs-bom,euc-jp,cp932,iso-2022-jp,ucs-2le,ucs-2,utf-8
 set ffs=unix,mac,dos
+"set clipboard+=unnamed
+set clipboard+=autoselect
+
+if $TMUX == ''
+  set clipboard+=unnamed
+endif
+
+
 
 "set clipboard+=unnamed
 " vimmer養成ギプス
