@@ -25,8 +25,7 @@ compinit -u
 #`bindkey "\e[3~" delete-char` 
 
 function peco-history-selection() {
-   BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
-  #BUFFER=`history -n 1 | tail | tac  | awk '!a[$0]++' | peco`
+  BUFFER=`history -n 1 | tac | awk '!a[$0]++' | peco`
   CURSOR=$#BUFFER
   zle reset-prompt
 }
