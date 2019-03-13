@@ -62,6 +62,7 @@ call dein#add('mattn/emmet-vim')
 call dein#add('rking/ag.vim')
 call dein#add('kana/vim-submode')
 call dein#add('altercation/vim-colors-solarized')
+call dein#add('KabbAmine/unite-cmus')
 call dein#end()
 call dein#save_state()
 
