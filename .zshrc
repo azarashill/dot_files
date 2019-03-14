@@ -43,16 +43,10 @@ function agvim () {
 }
 
 function agp(){
-  #ag $@ | awk '!a[$0]++' | peco --query "$LBUFFER" | awk -F : '{print -z $1}' 
   BUFFER=`ag $@ | awk '!a[$0]++' | peco --query "$LBUFFER" | awk -F : '{print $1}'`
-  #BUFFER=`ag $@ | awk '!a[$0]++' | peco --query "$LBUFFER"`
   print -z $BUFFER
   echo 'hoge'
   echo $#BUFFER
-  #CURSOR=$#BUFFER
-  #CURSOR=$#BUFFER
-  #zle reset-prompt
-  #$(ag $@ | peco --query "$LBUFFER"| awk -F : '{print "-c " $2 " " $1}')
 }
 
 function fnvim () {
