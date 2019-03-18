@@ -25,6 +25,9 @@ mkdir -p ~/.vim/dein/repos/github.com/Shougo/dein.vim
 git clone https://github.com/Shougo/dein.vim.git \
     ~/.vim/dein/repos/github.com/Shougo/dein.vim
 
+mkdir ~/.vim/rc
+touch ~/.vim/dein.toml
+touch ~/.vim/dein_lazy.toml
 
 #zshをinstall
 source $PWD/zsh/install.sh
