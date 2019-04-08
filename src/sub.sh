@@ -5,7 +5,9 @@ cd $(dirname $0)
 git clone git://github.com/zsh-users/zsh-completions.git
 
 if [ "$(grep 'fpath' ~/.bashrc)" = "" ]; then
-  echo "fpath=($PWD/zsh-completions '$fpath')" >> ./.zshrc
+  test="fpath=($PWD/zsh-completions "
+  test+='$fpath)'
+  echo $test >> ./.zshrc
   echo "autoload -U compinit" >> ./.zshrc
   echo "compinit -u" >> ./.zshrc
 fi

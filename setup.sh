@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 #https://qiita.com/yoza/items/2f8bd33a18225754f346
 #https://qiita.com/Angelan1720/items/60431c85592fe90fcdd5
