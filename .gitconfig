@@ -1,5 +1,5 @@
 [color]
-  ui = false
+  ui = auto
   diff = true
   interactive = true
   status = true
@@ -19,8 +19,11 @@
   quotepath = false
   autocrlf = false
   safecrlf = true
-  pager = less=-R less
+  pager = less -r
 [i18n]
   commitencoding = UTF-8
 [push]
   default = matching
+[user]
+	name = azarashill
+	email = negativehappychain@gmail.com

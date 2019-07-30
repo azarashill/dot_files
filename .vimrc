@@ -45,24 +45,31 @@ let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
 
 call dein#load_toml(s:toml, {'lazy': 0})
 call dein#load_toml(s:lazy_toml,{'lazy': 1})
-
+call dein#add('tidalcycles/vim-tidal')
+call dein#add('supercollider/scvim')
 call dein#add('Shougo/dein.vim')
 call dein#add('Shougo/vimproc.vim' , {'build': 'make'})
 call dein#add('Shougo/neocomplete.vim')
 call dein#add('Shougo/neomru.vim')
 call dein#add('Shougo/vimfiler')
 call dein#add('Shougo/neosnippet')
+call dein#add('Shougo/neosnippet-snippets')
 call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('scrooloose/nerdtree')
 call dein#add('Shougo/unite.vim')
 call dein#add('Shougo/unite-outline')
-call dein#add('osyo-manga/vim-brightest')
+"call dein#add('osyo-manga/vim-brightest')
 call dein#add('junegunn/vim-easy-align')
 call dein#add('mattn/emmet-vim')
 call dein#add('rking/ag.vim')
 call dein#add('kana/vim-submode')
 call dein#add('altercation/vim-colors-solarized')
 call dein#add('KabbAmine/unite-cmus')
+call dein#add('airblade/vim-gitgutter')
+call dein#add('tpope/vim-fugitive')
+call dein#add('vim-scripts/textutil.vim')
+call dein#add('twitvim/twitvim')
+"call dein#add('')
 call dein#end()
 call dein#save_state()
 
@@ -98,9 +105,9 @@ nnoremap [unite]u :Unite -buffer-name=files buffer file_mru bookmark file<CR>
  nnoremap <silent> [unite]r  :<C-u>UniteResume search-buffer<CR>
 
  " unite grep に ag(The Silver Searcher) を使う
- if executable('ag')
-   let g:unite_source_grep_command = 'ag'
-   let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+ if executable('rg')
+   let g:unite_source_grep_command = 'rg'
+   "let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
    let g:unite_source_grep_recursive_opt = ''
  endif
 
@@ -126,6 +133,9 @@ nnoremap <silent> <space>f :VimFiler -split -simple -explorer -winwidth=30 -togg
 ".vimrc編集ショートカット
 nnoremap <silent> <Space>ev :<C-u>edit $MYVIMRC<CR>
 nnoremap <silent> <Space>sv :<C-u>source $MYVIMRC<CR>
+nnoremap <silent> <Space>memo :<C-u>edit ~/Dropbox/forGithub/memo.txt<CR>
+nnoremap <silent> <Space>pl :<C-u>edit ~/Dropbox/forGithub/plot.txt<CR>
+nnoremap <silent> <Space>sk :<C-u>edit ~/Dropbox/forGithub/weed.txt<CR>
 
 syntax enable
 
@@ -158,7 +168,7 @@ set showmode
 set title
 set showcmd
 set laststatus=2
-set cursorline
+set nocursorline
 set wrap
 set display=uhex
 set nf=hex
@@ -168,8 +178,9 @@ set splitright
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 set backspace=start,eol,indent
 
-set background=dark
-colorscheme desert
+"set background=dark
+autocmd ColorScheme * highlight Normal ctermbg=none
+colorscheme solarized
 
 nnoremap ;  :
 nnoremap :  ;
@@ -213,16 +224,17 @@ highlight ZenkakuSpace cterm=underline
 au BufWinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
 au WinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
 
+set termguicolors
 " ファイル読み込み時の文字コード検索順
 set termencoding=utf-8
 set enc=utf-8
 set fencs=utf-8,sjis,utf-16,ucs-bom,euc-jp,cp932,iso-2022-jp,ucs-2le,ucs-2,utf-8
 set ffs=unix,mac,dos
-"set clipboard+=unnamed
-set clipboard+=autoselect
+set clipboard+=unnamed
+"set clipboard+=autoselect
 
 if $TMUX == ''
-  set clipboard+=unnamed
+"  set clipboard+=unnamed
 endif
 
 
@@ -239,3 +251,37 @@ endif
 "inoremap <Right> <Nop>
 
 filetype plugin indent on
+set tags=./tags,tags;$HOME
+
+function! ProfileCursorMove() abort
+  let profile_file = expand('~/log/vim-profile.log')
+  if filereadable(profile_file)
+    call delete(profile_file)
+  endif
+
+  normal! gg
+  normal! zR
+
+  execute 'profile start ' . profile_file
+  profile func *
+  profile file *
+
+  augroup ProfileCursorMove
+    autocmd!
+    autocmd CursorHold <buffer> profile pause | q
+  augroup END
+
+  for i in range(100)
+    call feedkeys('j')
+  endfor
+endfunction
+
+"call map(dein#check_clean(), "delete(v:val, 'rf')")
+
+"let twitvim_browser_cmd = 'open' " for Mac
+"let twitvim_browser_cmd = 'C:¥Program Files¥Your_Browser_Path' " for Windows
+let twitvim_force_ssl = 1 
+let twitvim_count = 40
+set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
