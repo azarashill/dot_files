@@ -12,6 +12,7 @@ elif [ `uname` = "Linux" ]; then
   sudo apt-get update
   sudo apt-get upgrade
   sudo apt-get install zsh
+  sudo -s 'echo /usr/local/bin/zsh >> /etc/shells' && chsh -s /usr/local/bin/zsh
 fi
 
 

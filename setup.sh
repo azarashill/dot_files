@@ -30,10 +30,10 @@ touch ~/.vim/dein.toml
 touch ~/.vim/dein_lazy.toml
 
 #zshをinstall
-source $PWD/zsh/install.sh
+$PWD/zsh/install.sh
 
 #zpreztoとzsh-completions
-source $PWD/src/sub.sh
+$PWD/src/sub.sh
 
 
 #zsh
