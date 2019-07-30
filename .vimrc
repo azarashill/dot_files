@@ -69,6 +69,7 @@ call dein#add('airblade/vim-gitgutter')
 call dein#add('tpope/vim-fugitive')
 call dein#add('vim-scripts/textutil.vim')
 call dein#add('twitvim/twitvim')
+call dein#add('ayu-theme/ayu-vim')
 "call dein#add('')
 call dein#end()
 call dein#save_state()
@@ -178,9 +179,9 @@ set splitright
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 set backspace=start,eol,indent
 
-"set background=dark
+set background=dark
 autocmd ColorScheme * highlight Normal ctermbg=none
-colorscheme solarized
+"colorscheme solarized
 
 nnoremap ;  :
 nnoremap :  ;
@@ -283,5 +284,9 @@ endfunction
 let twitvim_force_ssl = 1 
 let twitvim_count = 40
 set termguicolors
+let ayucolor="light"  " for light version of theme
+let ayucolor="mirage" " for mirage version of theme
+let ayucolor="dark"   " for dark version of theme
+colorscheme ayu
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
