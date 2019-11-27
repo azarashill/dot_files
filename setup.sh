@@ -26,8 +26,8 @@ git clone https://github.com/Shougo/dein.vim.git \
     ~/.vim/dein/repos/github.com/Shougo/dein.vim
 
 mkdir ~/.vim/rc
-touch ~/.vim/dein.toml
-touch ~/.vim/dein_lazy.toml
+touch ~/.vim/rc/dein.toml
+touch ~/.vim/rc/dein_lazy.toml
 
 #zshをinstall
 $PWD/zsh/install.sh

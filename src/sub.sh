@@ -26,7 +26,7 @@ git clone https://github.com/powerline/fonts.git --depth=1
 
 # インストール
 cd fonts
-install.sh
+./install.sh
 
 # 必要なければcloneファイルを削除
 cd ..

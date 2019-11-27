@@ -181,7 +181,6 @@ export VTE_CJK_WIDTH=wide
 #  execution path - 実行パス
 #------------------------------------------------------------
 
-export PATH=~/bin/:~/bin/du-bin/:~/bin/vendor/:local/bin:~/usr/local/bin:"$PATH"
-
-
-
+export PATH=~/bin/du-bin/:~/bin/vendor/:local/bin:~/usr/local/bin:"$PATH"
+ export LANGUAGE="ja_JP:ja"
+ export LC_ALL="ja_JP.UTF-8"

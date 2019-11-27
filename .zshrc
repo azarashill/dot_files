@@ -93,5 +93,6 @@ fi
  export PATH=$HOME/.rbenv/bin:$PATH
  eval "$(rbenv init -)"
  export TERM=xterm-256color
+ export LANGUAGE="ja_JP:ja"
+ export LC_ALL="ja_JP.UTF-8"
 
- export LANG=ja_JP.UTF-8
