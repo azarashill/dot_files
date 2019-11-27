@@ -2,9 +2,10 @@
 
 return PhpCsFixer\Config::create()
     ->setRules(array(
-        //'@Symfony' => true,
+        '@PSR2' => true,
         //trim_array_namespace' => true,
         'blank_line_after_opening_tag' => false,
+        'blank_line_after_namespace' => false,
         'braces' => array(
             //'allow_single_line_closure' => true,
             //'position_after_anonymous_constructs' => 'next'
