@@ -4,6 +4,9 @@
   interactive = true
   status = true
   branch = true
+[color "diff"]
+  old = "red" "#101010" "bold"
+  new = "green" "#151515" "bold"
 [alias]
   st = status -sb
   cm = commit
@@ -27,3 +30,7 @@
 [user]
 	name = azarashill
 	email = negativehappychain@gmail.com
+[diff]
+  tool = default-difftool
+[difftool "default-difftool"]
+  cmd = code --wait --diff $LOCAL $REMOTE
