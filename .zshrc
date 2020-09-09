@@ -10,8 +10,8 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# keychain --nogui --quiet ~/.ssh/id_rsa 
-keychain --nogui --quiet  ~/.ssh/github/test_rsa
+keychain --nogui --quiet ~/.ssh/id_rsa 
+# keychain --nogui --quiet  ~/.ssh/github/test_rsa
 source ~/.keychain/$HOST-sh
  alias vi='vim'
 # alias ssh='ssh'
@@ -100,13 +100,13 @@ fi
 
 #source $PYENV_ROOT/shims/aws_zsh_completer.sh
 #complete -C aws_completer aws
-
- export PATH=$HOME/.rbenv/bin:$PATH
- eval "$(rbenv init -)"
- export TERM=xterm-256color
- eval "$(ssh-add -K)"
- eval "$(ssh-add -K ~/.ssh/github/test_rsa)"
- export LANG=ja_JP.UTF-8
+[[ -d ~/.rbenv ]] && \
+  export PATH=$HOME/.rbenv/bin:$PATH && \
+  eval "$(rbenv init -)"
+export TERM=xterm-256color
+eval "$(ssh-add -K)"
+# eval "$(ssh-add -K ~/.ssh/github/test_rsa)"
+export LANG=ja_JP.UTF-8
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/itahashitakushi/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/itahashitakushi/google-cloud-sdk/path.zsh.inc'; fi
