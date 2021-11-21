@@ -18,7 +18,7 @@ source ~/.keychain/$HOST-sh
 
 # customize to your needs...
 #
-
+eval "$(/opt/homebrew/bin/brew shellenv)"
 #complete -c 'aws_completer' aws
 #fpath=('aws_completer' $fpath)
 fpath=(/usr/local/var/homebrew/linked/zsh-completions $fpath)
@@ -76,6 +76,7 @@ function describe-addresses(){
 
 #export PATH=~/bin/:~/bin/du-bin/:~/bin/vendor/:local/bin:~/usr/local/bin:"$PATH"
 
+PATH=/bin:/usr/bin:/usr/local/bin:${PATH}
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 export MANPATH=/opt/local/man:$MANPATH
 #export PATH=$HOME/Library/Python//2.7/bin/:$PATH
@@ -89,6 +90,9 @@ export QT_QPA_PLATFORM_PLUGIN_PATH=usr/local/Cellar/qt/5.13.2/plugins
 export QT_PLUGIN_PATH=$QT_QPA_PLATFORM_PLUGIN_PATH
 export Qt5_DIR=usr/local/Cellar/qt/5.13.2/plugins
 export PATH=$PATH:$QT_QPA_PLATFORM_PLUGIN_PATH/bin
+export PATH=$HOME/Library/Python/3.8/bin:$PATH
+export PATH=$HOME/.dotnet/tools:$PATH
+export PATH=$HOME/.nimble/bin:$PATH
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
   #source "$(pyenv which aws_zsh_completer.sh)"
@@ -104,7 +108,9 @@ fi
   export PATH=$HOME/.rbenv/bin:$PATH && \
   eval "$(rbenv init -)"
 export TERM=xterm-256color
-eval "$(ssh-add -K)"
+eval "$(ssh-add --apple-use-keychain)"
+# The -K and -A flags are deprecated and have been replaced
+#         by the --apple-use-keychain and --apple-load-keychain
 # eval "$(ssh-add -K ~/.ssh/github/test_rsa)"
 export LANG=ja_JP.UTF-8
 
@@ -113,4 +119,26 @@ if [ -f '/Users/itahashitakushi/google-cloud-sdk/path.zsh.inc' ]; then . '/Users
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/itahashitakushi/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/itahashitakushi/google-cloud-sdk/completion.zsh.inc'; fi
-#eval "$(ssh-agent)"
+eval "$(ssh-agent)"
+#eval "$(hub alias -s)"
+alias yarn='yarn'
+
+export NPM_TOKEN=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
+# git-promptの読み込み
+source ~/.zsh/git-prompt.sh
+
+# git-completionの読み込み
+fpath=(~/.zsh $fpath)
+zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
+autoload -U compinit 
+compinit -u
+
+# プロンプトのオプション表示設定
+GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWUNTRACKEDFILES=true
+GIT_PS1_SHOWSTASHSTATE=true
+GIT_PS1_SHOWUPSTREAM=auto
+
+# プロンプトの表示設定(好きなようにカスタマイズ可)
+setopt PROMPT_SUBST ; PS1='%F{green}%n@%m%f: %F{cyan}%~%f %F{red}$(__git_ps1 "(%s)")%f
+\$ '

@@ -7,3 +7,9 @@ compinit -u
 fpath=(/Users/itahashitakushi/projects/dot_files/src/zsh-completions $fpath)
 autoload -U compinit
 compinit -u
+fpath=(/Users/itahashitakushi/projects/dot_files/src/zsh-completions $fpath)
+autoload -U compinit
+compinit -u
+fpath=(/Users/itahashitakushi/projects/dot_files/src/zsh-completions $fpath)
+autoload -U compinit
+compinit -u
