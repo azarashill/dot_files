@@ -185,3 +185,7 @@ export PATH=~/bin/:~/bin/du-bin/:~/bin/vendor/:local/bin:~/usr/local/bin:"$PATH"
 
 
 
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+export NODE_PATH=$HOME/.nodebrew/current/lib/node_modules
+export PATH=$PATH:~/.nodebrew/current/bin:~/.nodebrew/current/lib/node_modules/npm/bin
+. "$HOME/.cargo/env"

@@ -9,9 +9,10 @@
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
-
-keychain --nogui --quiet ~/.ssh/id_rsa 
-# keychain --nogui --quiet  ~/.ssh/github/test_rsa
+ssh-add -K ~/.ssh/id_rsa
+ssh-add -K ~/.ssh/work/cw_rsa
+keychain --nogui --quiet ~/.ssh/id_rsa
+keychain --nogui --quiet  ~/.ssh/github/test_rsa
 source ~/.keychain/$HOST-sh
  alias vi='vim'
 # alias ssh='ssh'
@@ -26,7 +27,7 @@ autoload -U compinit
 compinit -u
 #alias ssh-config-update="cat ~/.ssh/conf.d/common-config ~/.ssh/conf.d/*.conf > ~/.ssh/config"
 
-#`bindkey "\e[3~" delete-char` 
+#`bindkey "\e[3~" delete-char`
 
 function peco-history-selection() {
   BUFFER=`history -n 1 | tac | awk '!a[$0]++' | peco`
@@ -52,7 +53,7 @@ function rgvim () {
 }
 
 function agp(){
-  #ag $@ | awk '!a[$0]++' | peco --query "$lbuffer" | awk -f : '{print -z $1}' 
+  #ag $@ | awk '!a[$0]++' | peco --query "$lbuffer" | awk -f : '{print -z $1}'
   buffer=`ag $@ | awk '!a[$0]++' | peco --query "$LBUFFER" | awk -F : '{print $1}'`
   #buffer=`ag $@ | awk '!a[$0]++' | peco --query "$lbuffer"`
   print -z $BUFFER
@@ -108,7 +109,7 @@ fi
   export PATH=$HOME/.rbenv/bin:$PATH && \
   eval "$(rbenv init -)"
 export TERM=xterm-256color
-eval "$(ssh-add --apple-use-keychain)"
+# eval "$(ssh-add --apple-use-keychain)"
 # The -K and -A flags are deprecated and have been replaced
 #         by the --apple-use-keychain and --apple-load-keychain
 # eval "$(ssh-add -K ~/.ssh/github/test_rsa)"
@@ -119,9 +120,9 @@ if [ -f '/Users/itahashitakushi/google-cloud-sdk/path.zsh.inc' ]; then . '/Users
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/itahashitakushi/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/itahashitakushi/google-cloud-sdk/completion.zsh.inc'; fi
-eval "$(ssh-agent)"
+# eval `$(ssh-agent)`
+eval `ssh-agent`
 #eval "$(hub alias -s)"
-alias yarn='yarn'
 
 export NPM_TOKEN=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
 # git-promptの読み込み
@@ -130,7 +131,7 @@ source ~/.zsh/git-prompt.sh
 # git-completionの読み込み
 fpath=(~/.zsh $fpath)
 zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
-autoload -U compinit 
+autoload -U compinit
 compinit -u
 
 # プロンプトのオプション表示設定
@@ -142,3 +143,29 @@ GIT_PS1_SHOWUPSTREAM=auto
 # プロンプトの表示設定(好きなようにカスタマイズ可)
 setopt PROMPT_SUBST ; PS1='%F{green}%n@%m%f: %F{cyan}%~%f %F{red}$(__git_ps1 "(%s)")%f
 \$ '
+export PATH="/opt/homebrew/opt/mysql@5.7/bin:$PATH"
+
+export NODE_PATH=$HOME/.nodebrew/current/lib/node_modules
+export PATH=$PATH:~/.nodebrew/current/bin:~/.nodebrew/current/lib/node_modules/npm/bin
+export PATH=$PATH:$HOME/.cargo/bin
+
+peco-src () {
+    local repo=$(ghq list | peco --query "$LBUFFER")
+    if [ -n "$repo" ]; then
+        repo=$(ghq list --full-path --exact $repo)
+        BUFFER="cd ${repo}"
+        zle accept-line
+    fi
+    zle clear-screen
+}
+zle -N peco-src
+bindkey '^]' peco-src
+
+ghq-code () {
+    local repo=$(ghq list | peco --query "$LBUFFER")
+    if [ -n "$repo" ]; then
+        repo=$(ghq list --full-path --exact $repo)
+        code ${repo}
+    fi
+}
+zle -N ghq-code
