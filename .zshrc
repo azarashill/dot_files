@@ -94,6 +94,10 @@ export PATH=$PATH:$QT_QPA_PLATFORM_PLUGIN_PATH/bin
 export PATH=$HOME/Library/Python/3.8/bin:$PATH
 export PATH=$HOME/.dotnet/tools:$PATH
 export PATH=$HOME/.nimble/bin:$PATH
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:~/go/bin
+export GOPATH=$HOME/go
+
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
   #source "$(pyenv which aws_zsh_completer.sh)"
@@ -135,14 +139,14 @@ autoload -U compinit
 compinit -u
 
 # プロンプトのオプション表示設定
-GIT_PS1_SHOWDIRTYSTATE=true
-GIT_PS1_SHOWUNTRACKEDFILES=true
-GIT_PS1_SHOWSTASHSTATE=true
-GIT_PS1_SHOWUPSTREAM=auto
+# GIT_PS1_SHOWDIRTYSTATE=true
+# GIT_PS1_SHOWUNTRACKEDFILES=true
+# GIT_PS1_SHOWSTASHSTATE=true
+# GIT_PS1_SHOWUPSTREAM=auto
 
 # プロンプトの表示設定(好きなようにカスタマイズ可)
-setopt PROMPT_SUBST ; PS1='%F{green}%n@%m%f: %F{cyan}%~%f %F{red}$(__git_ps1 "(%s)")%f
-\$ '
+# setopt PROMPT_SUBST ; PS1='%F{green}%n@%m%f: %F{cyan}%~%f %F{red}$(__git_ps1 "(%s)")%f
+# \$ '
 export PATH="/opt/homebrew/opt/mysql@5.7/bin:$PATH"
 
 export NODE_PATH=$HOME/.nodebrew/current/lib/node_modules
